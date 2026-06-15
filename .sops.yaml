@@ -1,0 +1,10 @@
+keys:
+  - &zeb_nix age1apc0xzutxqypjj66z04lp0jcw288t7cpvf5un8sllrjlz8r99duq9ndqp8
+  - &laptop age1z4jg3fr678vtqa7ft2sexc7zhdg405sw80fdr5m33gsa84cgqf9snzvkuv
+
+creation_rules:
+  - path_regex: secrets\.yaml$
+    key_groups:
+      - age:
+        - *zeb_nix
+        - *laptop
