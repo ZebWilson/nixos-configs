@@ -212,12 +212,11 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Used to query the same auth used by IDEs - from gnome keyring
+  package = pkgs.git.override { withLibsecret = true; };
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # version control
-    git
-
     # networking
     wget
     curl
