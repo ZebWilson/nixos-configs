@@ -5,6 +5,7 @@
 {
   config,
   pkgs,
+  lib,
   unstable,
   antigravity-nix,
   ...
@@ -201,19 +202,21 @@
   users.users.zeb.shell = pkgs.zsh;
 
   programs.nix-ld.libraries = with pkgs; [
-    stdenv.cc.cc.lib
+    stdenv.cc.cc
     zlib
-    glib
-    # You can even put CUDA here if you want it globally available to pip/uv!
-    cudatoolkit
-    config.boot.kernelPackages.nvidia_x11
+    openssl
+    libuuid
+    libxcrypt-legacy
   ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # Used to query the same auth used by IDEs - from gnome keyring
-  package = pkgs.git.override { withLibsecret = true; };
+  programs.git = {
+    enable = true;
+    package = pkgs.git.override { withLibsecret = true; };
+  };
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -265,8 +268,8 @@
           switch-windows = [ "<Alt>Tab" ];
           switch-windows-backward = [ "<Shift><Alt>Tab" ];
 
-          switch-applications = pkgs.lib.gvariant.mkEmptyArray pkgs.lib.gvariant.type.string;
-          switch-applications-backward = pkgs.lib.gvariant.mkEmptyArray pkgs.lib.gvariant.type.string;
+          switch-applications = lib.gvariant.mkEmptyArray lib.gvariant.type.string;
+          switch-applications-backward = lib.gvariant.mkEmptyArray lib.gvariant.type.string;
         };
 
         # Define the list of custom keybindings paths
