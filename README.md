@@ -11,6 +11,8 @@ This repository contains reproducible NixOS system configurations managed using 
 * `docs/`: Guides and system planning.
   * `docs/sops_setup.md`: Guide to setting up encrypted secrets.
   * `docs/dendritic_plan.md`: Roadmap for future modularization.
+  * `docs/shell_setup.md`: Guide to shell configuration and Zsh setup.
+
 
 ## How to Rebuild
 To apply configuration changes on the local machine:
