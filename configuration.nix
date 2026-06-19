@@ -78,6 +78,8 @@
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
 
+  hardware.graphics.enable = true;
+
   hardware.nvidia = {
     # Modesetting is required.
     modesetting.enable = true;
@@ -211,6 +213,9 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  environment.sessionVariables = {
+    NIXPKGS_ALLOW_UNFREE = "1";
+  };
 
   # Used to query the same auth used by IDEs - from gnome keyring
   programs.git = {
