@@ -184,6 +184,7 @@
       unstable.freecad
       unstable.ghostty
       unstable.google-chrome
+      unstable.vesktop # Discord
       antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.google-antigravity-ide-no-fhs
       antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.google-antigravity-cli
     ];
