@@ -214,6 +214,9 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "pnpm-10.29.2"
+  ];
   environment.sessionVariables = {
     NIXPKGS_ALLOW_UNFREE = "1";
   };
