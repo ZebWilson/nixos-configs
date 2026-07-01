@@ -18,6 +18,7 @@ This repository contains reproducible NixOS system configurations managed using 
 To apply configuration changes on the local machine:
 ```bash
 sudo nixos-rebuild switch --flake .#laptop
+sudo NIXPKGS_ALLOW_INSECURE=1 nixos-rebuild switch --flake .#laptop --impure
 ```
 
 ## Secrets Management
