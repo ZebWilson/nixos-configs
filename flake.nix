@@ -14,7 +14,7 @@
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    antigravity-nix.url = "github:jacopone/antigravity-nix";
+    antigravity-nix.url = "github:jacopone/antigravity-nix/v2.0.1-6566078776737792";
   };
 
   # Flake outputs
@@ -43,7 +43,11 @@
           # Load the hardware configuration from a separate file (a common convention for NixOS)
           ./configuration.nix
           # This module provides a minimum viable NixOS configuration
-
+          {
+            nixpkgs.overlays = [
+              inputs.antigravity-nix.overlays.default
+            ];
+          }
         ];
 
         specialArgs = {
@@ -52,7 +56,6 @@
             inherit system;
             config.allowUnfree = true;
           };
-          antigravity-nix = inputs.antigravity-nix;
         };
       };
 
