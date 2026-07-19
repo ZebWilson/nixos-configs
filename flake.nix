@@ -14,7 +14,7 @@
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    antigravity-nix.url = "github:jacopone/antigravity-nix/v2.0.1-6566078776737792";
+    antigravity-nix.url = "github:jacopone/antigravity-nix";
   };
 
   # Flake outputs

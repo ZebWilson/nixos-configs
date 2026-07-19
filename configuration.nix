@@ -103,7 +103,7 @@
     # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
     # Only available from driver 515.43.04+
     # Currently "stable" 580 usually refers to the proprietary one.
-    open = true;
+    open = false;
 
     # Enable the Nvidia settings menu,
     # accessible via `nvidia-settings`.
@@ -116,6 +116,11 @@
   # Enable the GNOME Desktop Environment.
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
+
+  # Remove unwanted default GNOME apps
+  environment.gnome.excludePackages = with pkgs; [
+    epiphany # GNOME Web
+  ];
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -184,7 +189,7 @@
       unstable.ghostty
       unstable.google-chrome
       unstable.vesktop # Discord
-      google-antigravity-ide-no-fhs
+      unstable.zed-editor
       google-antigravity-cli
     ];
   };
@@ -213,9 +218,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = [
-    "pnpm-10.29.2"
-  ];
+
   environment.sessionVariables = {
     NIXPKGS_ALLOW_UNFREE = "1";
   };
