@@ -181,8 +181,6 @@
     packages = with pkgs; [
       gnome-tweaks
       qbittorrent
-      python314
-      uv
       freecad
       unstable.blender
       unstable.kicad
