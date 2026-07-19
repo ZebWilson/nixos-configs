@@ -183,13 +183,14 @@
       qbittorrent
       python314
       uv
+      freecad
       unstable.blender
       unstable.kicad
-      unstable.freecad
       unstable.ghostty
       unstable.google-chrome
       unstable.vesktop # Discord
       unstable.zed-editor
+      unstable.herdr
       google-antigravity-cli
     ];
   };
@@ -241,7 +242,6 @@
     usbutils
     htop
     unzip
-    zellij
 
     # nix setup
     nixfmt
