@@ -31,6 +31,10 @@
   # Optional: limit tmpfs size if you are tight on RAM (defaults to 50% of RAM)
   boot.tmp.tmpfsSize = "50%";
 
+  # Fix: DDR5 SPD temperature sensor (spd5118) fails to resume from S3 sleep
+  # with error -6 (ENXIO), causing post-resume hangs. Disable its suspend hook.
+  boot.extraModprobeConfig = "options spd5118 disable_suspend=1";
+
   # Saving disk spill for cache by compression RAM Cache
   zramSwap = {
     enable = true;
@@ -306,7 +310,8 @@
   #   enableSSHSupport = true;
   # };
 
-  # List services that you want to enable:
+  # Enable Tailscale
+  services.tailscale.enable = true;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
