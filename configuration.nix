@@ -182,6 +182,9 @@
       "networkmanager"
       "wheel"
     ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBMXO+DDiwnioe/0zbRnA+qIPBKOaHqQsv4lg5jXMl9x phone1"
+    ];
     packages = with pkgs; [
       gnome-tweaks
       qbittorrent
@@ -230,6 +233,14 @@
   programs.git = {
     enable = true;
     package = pkgs.git.override { withLibsecret = true; };
+    config = {
+      core.editor = "micro";
+    };
+  };
+
+  environment.variables = {
+    EDITOR = "micro";
+    VISUAL = "zed";
   };
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -239,7 +250,7 @@
     curl
 
     # Core tools
-    helix
+    micro
     pciutils
     usbutils
     htop
@@ -314,13 +325,17 @@
   services.tailscale.enable = true;
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    openFirewall = false; # Don't open port 22 globally; we scope it to tailscale0 below.
+    settings = {
+      PasswordAuthentication = false;
+      PermitRootLogin = "no";
+    };
+  };
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  # Allow SSH only on the Tailscale interface — blocks wlan0/eth0.
+  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 22 ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
