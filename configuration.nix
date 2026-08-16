@@ -183,8 +183,9 @@
       "wheel"
     ];
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBMXO+DDiwnioe/0zbRnA+qIPBKOaHqQsv4lg5jXMl9x phone1"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJXMtOpbawqNz8dXh5Q/brquRxdwEVHLvUqljiv8xBhK termux_ssh_key"
     ];
+
     packages = with pkgs; [
       gnome-tweaks
       qbittorrent
